@@ -23,12 +23,8 @@ public class MainAlliance implements CommandExecutor{
         }
 
         switch (args[0].toLowerCase()) {
-            case "create":
-                return CommandCreate.handle((Player) sender, args);
-            case "info":
-                return CommandInfo.handle((Player) sender, args);
-            case "chat":
-                return CommandChat.handle((Player) sender, args);
+            // case "create":
+            //     return CommandCreate.handle((Player) sender, args);
             case "help":
                 return CommandHelp.handle((Player) sender, args);
         }

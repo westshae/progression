@@ -1,31 +1,11 @@
-main: cc.altoya.settlements.App
-name: settlements
-version: 1.1
+main: cc.altoya.progression.App
+name: progression
+version: 1.0
 api-version: 1.21.1
-description: Settlements plugin
+description: Progression plugin
 
 commands:
   city:
     description: Domains
     usage: /city {subcommand} {var}
     tab-completer: cc.altoya.settlements.City.CityTabCompleter
-  alliance:
-    description: Alliances
-    usage: /alliance {subcommand} {var}
-    tab-completer: cc.altoya.settlements.Alliance.AllianceTabCompleter
-  build:
-    description: Build
-    usage: /build {subcommand} {var}
-    tab-completer: cc.altoya.settlements.Build.BuildTabCompleter
-  blueprint:
-    description: Blueprint
-    usage: /blueprint {subcommand} {var}
-    tab-completer: cc.altoya.settlements.Blueprint.BlueprintTabCompleter
-  item:
-    description: Items
-    usage: /item {subcommand} {var}
-    tab-completer: cc.altoya.settlements.Item.ItemTabCompleter
-  map:
-    description: Maps
-    usage: /map {subcommand} {var}
-    tab-completer: cc.altoya.settlements.Map.MapTabCompleter
