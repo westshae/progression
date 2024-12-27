@@ -8,4 +8,8 @@ commands:
   experience:
     description: Experience system
     usage: /experience {subcommand} {var}
-    tab-completer: cc.altoya.settlements.Experience.ExperienceTabCompleter
+    tab-completer: cc.altoya.progression.Experience.ExperienceTabCompleter
+  gear:
+    description: Gear system
+    usage: /gear {subcommand} {var}
+    tab-completer: cc.altoya.progression.Experience.GearTabCompleter

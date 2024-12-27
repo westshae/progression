@@ -1,4 +1,4 @@
-package cc.altoya.progression.Experience;
+package cc.altoya.progression.Gear;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,10 +7,10 @@ import org.bukkit.entity.Player;
 
 import cc.altoya.progression.Util.ChatUtil;
 
-public class MainExperience implements CommandExecutor{
+public class MainGear implements CommandExecutor{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!command.getName().equalsIgnoreCase("experience")) {
+        if (!command.getName().equalsIgnoreCase("gear")) {
             return true;
         }
         if (!(sender instanceof Player)) {
@@ -18,7 +18,7 @@ public class MainExperience implements CommandExecutor{
         }
 
         if (args.length == 0) {
-            ChatUtil.sendErrorMessage((Player) sender, "Requires more arguments. Use /experience help");
+            ChatUtil.sendErrorMessage((Player) sender, "Requires more arguments. Use /gear help");
             return true;
         }
 

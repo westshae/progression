@@ -10,13 +10,12 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import cc.altoya.progression.Util.ChatUtil;
 import cc.altoya.progression.Util.DBUtil;
 import cc.altoya.progression.Util.GeneralUtil;
 
 public class ExperienceUtil {
     public static FileConfiguration getExperienceConfig() {
-        return GeneralUtil.getPluginConfig("settlements", "experience.yml");
+        return GeneralUtil.getPluginConfig("progression", "experience.yml");
     }
 
     public static void saveExperienceConfig(FileConfiguration config) {
@@ -55,14 +54,31 @@ public class ExperienceUtil {
             if (experience == null) {
                 return;
             }
-            SingletonExperienceBank.addExperience(Experience.PICKAXE, uuid, experience.get(Experience.PICKAXE));
-            SingletonExperienceBank.addExperience(Experience.AXE, uuid, experience.get(Experience.AXE));
-            SingletonExperienceBank.addExperience(Experience.SHOVEL, uuid, experience.get(Experience.SHOVEL));
-            SingletonExperienceBank.addExperience(Experience.HOE, uuid, experience.get(Experience.HOE));
-            SingletonExperienceBank.addExperience(Experience.MELEE, uuid, experience.get(Experience.MELEE));
-            SingletonExperienceBank.addExperience(Experience.RANGED, uuid, experience.get(Experience.RANGED));
-            SingletonExperienceBank.addExperience(Experience.ARMOUR, uuid, experience.get(Experience.ARMOUR));
-            SingletonExperienceBank.addExperience(Experience.FISHING, uuid, experience.get(Experience.FISHING));
+            // Use containsKey to ensure the key exists in the map before accessing the value
+            if (experience.containsKey(Experience.PICKAXE)) {
+                SingletonExperienceBank.addExperience(Experience.PICKAXE, uuid, experience.get(Experience.PICKAXE));
+            }
+            if (experience.containsKey(Experience.AXE)) {
+                SingletonExperienceBank.addExperience(Experience.AXE, uuid, experience.get(Experience.AXE));
+            }
+            if (experience.containsKey(Experience.SHOVEL)) {
+                SingletonExperienceBank.addExperience(Experience.SHOVEL, uuid, experience.get(Experience.SHOVEL));
+            }
+            if (experience.containsKey(Experience.HOE)) {
+                SingletonExperienceBank.addExperience(Experience.HOE, uuid, experience.get(Experience.HOE));
+            }
+            if (experience.containsKey(Experience.MELEE)) {
+                SingletonExperienceBank.addExperience(Experience.MELEE, uuid, experience.get(Experience.MELEE));
+            }
+            if (experience.containsKey(Experience.RANGED)) {
+                SingletonExperienceBank.addExperience(Experience.RANGED, uuid, experience.get(Experience.RANGED));
+            }
+            if (experience.containsKey(Experience.ARMOUR)) {
+                SingletonExperienceBank.addExperience(Experience.ARMOUR, uuid, experience.get(Experience.ARMOUR));
+            }
+            if (experience.containsKey(Experience.FISHING)) {
+                SingletonExperienceBank.addExperience(Experience.FISHING, uuid, experience.get(Experience.FISHING));
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

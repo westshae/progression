@@ -9,6 +9,9 @@ import cc.altoya.progression.Experience.EventLoadData;
 import cc.altoya.progression.Experience.ExperienceTabCompleter;
 import cc.altoya.progression.Experience.ExperienceUtil;
 import cc.altoya.progression.Experience.MainExperience;
+import cc.altoya.progression.Gear.EventGearObtaining;
+import cc.altoya.progression.Gear.GearTabCompleter;
+import cc.altoya.progression.Gear.MainGear;
 
 public class App extends JavaPlugin {
     @Override
@@ -17,13 +20,16 @@ public class App extends JavaPlugin {
 
         // Register commands
         this.getCommand("experience").setExecutor(new MainExperience());
+        this.getCommand("gear").setExecutor(new MainGear());
 
         // Register tab completers
         this.getCommand("experience").setTabCompleter(new ExperienceTabCompleter());
+        this.getCommand("gear").setTabCompleter(new GearTabCompleter());
 
         // Register eventListeners
         this.getServer().getPluginManager().registerEvents(new EventExperienceGain(), this);
         this.getServer().getPluginManager().registerEvents(new EventLoadData(), this);
+        this.getServer().getPluginManager().registerEvents(new EventGearObtaining(), this);
     }
 
     @Override
