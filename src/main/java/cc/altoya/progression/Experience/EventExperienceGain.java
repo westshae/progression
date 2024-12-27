@@ -13,14 +13,30 @@ import cc.altoya.progression.Util.ChatUtil;
 public class EventExperienceGain implements Listener {
   @EventHandler
   public void handleBreakEvent(BlockBreakEvent event) {
-    if(!event.getBlock().getType().equals(Material.GRASS_BLOCK)){
-      return;
-    }
-
     Player player = event.getPlayer();
     UUID uuid = player.getUniqueId();
 
-    SingletonExperienceBank.addMiningExperience(uuid, 1);
-    ChatUtil.sendSuccessBar(player, "Mining XP: " + SingletonExperienceBank.getMiningExperience(uuid));
+    Material blockType = event.getBlock().getType();
+    Experience xpType = Experience.PICKAXE;
+
+    switch (blockType) {
+      case GRASS_BLOCK:
+        xpType = Experience.SHOVEL;
+        break;
+      case STONE:
+        xpType = Experience.PICKAXE;
+        break;
+      case WHEAT:
+        xpType = Experience.HOE;
+        break;
+      case OAK_LOG:
+        xpType = Experience.AXE;
+        break;    
+      default:
+        return;
+    }
+
+    SingletonExperienceBank.addExperience(xpType, uuid, 1);
+    ChatUtil.sendSuccessBar(player, xpType.toString() + " XP: " + SingletonExperienceBank.getExperience(xpType, uuid));
   }
 }

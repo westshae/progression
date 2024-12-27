@@ -14,11 +14,7 @@ public class EventLoadData implements Listener {
     Player player = event.getPlayer();
     UUID uuid = player.getUniqueId();
 
-    if(!SingletonExperienceBank.hasExperience(uuid)){
-      return;
-    }
-
-    ExperienceUtil.savePlayerMiningExperienceToDB(uuid);
+    ExperienceUtil.savePlayerExperienceToDB(uuid);
   }
 
   @EventHandler
@@ -26,6 +22,6 @@ public class EventLoadData implements Listener {
     Player player = event.getPlayer();
     UUID uuid = player.getUniqueId();
 
-    ExperienceUtil.loadPlayerMiningExperienceIntoSingleton(uuid);
+    ExperienceUtil.loadPlayerExperienceIntoSingleton(uuid);
   }
 }
