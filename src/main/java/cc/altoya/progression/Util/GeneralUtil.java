@@ -1,4 +1,4 @@
-package cc.altoya.settlements.Util;
+package cc.altoya.progression.Util;
 
 import java.io.File;
 import java.io.IOException;

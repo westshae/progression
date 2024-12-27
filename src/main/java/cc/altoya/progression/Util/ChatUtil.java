@@ -1,4 +1,4 @@
-package cc.altoya.settlements.Util;
+package cc.altoya.progression.Util;
 
 import java.util.List;
 import java.util.Map;

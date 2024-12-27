@@ -1,4 +1,4 @@
-package cc.altoya.settlements.Alliance;
+package cc.altoya.progression.Experience;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllianceTabCompleter implements TabCompleter {
+public class ExperienceTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
             return null;
         }
 
-        List<String> commandsUnformatted = List.copyOf(AllianceUtil.getAllianceCommands().keySet());
+        List<String> commandsUnformatted = List.copyOf(ExperienceUtil.getExperienceCommands().keySet());
 
         List<String[]> commands = new ArrayList<String[]>();
 
