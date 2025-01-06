@@ -9,6 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 
+import cc.altoya.progression.Experience.Experience;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
@@ -75,36 +76,62 @@ public class GearUtil {
     return null;
   }
 
-  public static void updatePlayerGear(Player player) {
-    updatePickaxe(player);
-    updateAxe(player);
-    updateShovel(player);
+  public static boolean itemStackHasKey(ItemStack item, String stringKey) {
+    if (item != null && item.getType() != Material.AIR) {
+      ItemMeta meta = item.getItemMeta();
+      if (meta != null) {
+        NamespacedKey key = new NamespacedKey(
+            Bukkit.getServer().getPluginManager().getPlugin("progression"),
+            stringKey);
+        PersistentDataContainer container = meta.getPersistentDataContainer();
+        return container.has(key, PersistentDataType.STRING);
+      }
+    }
+    return false;
   }
-  public static void updateAxe(Player player) {
-    Inventory inventory = player.getInventory();
-    ItemStack axe = inventoryContainsKey(inventory, "progression_axe");
-    if (axe != null) {
-      inventory.remove(axe);
-      inventory.addItem(AxeLevelUtil.getAxeViaLevel(player.getUniqueId()));
+
+  public static void updatePlayerGear(Player player, Experience xpType, ItemStack gear) {
+    switch (xpType) {
+      case AXE ->
+        updateAxe(player, gear);
+      case PICKAXE ->
+        updatePickaxe(player, gear);
+      case SHOVEL ->
+        updateShovel(player, gear);
+      default -> {
+        return;
+      }
     }
   }
 
-  public static void updateShovel(Player player) {
+  public static void updateAxe(Player player, ItemStack gear) {
+    if (gear == null)
+      return;
+    if (!itemStackHasKey(gear, "progression_axe"))
+      return;
     Inventory inventory = player.getInventory();
-    ItemStack shovel = inventoryContainsKey(inventory, "progression_shovel");
-    if (shovel != null) {
-      inventory.remove(shovel);
-      inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
-    }
+    inventory.remove(gear);
+    inventory.addItem(AxeLevelUtil.getAxeViaLevel(player.getUniqueId()));
   }
 
-  public static void updatePickaxe(Player player) {
+  public static void updateShovel(Player player, ItemStack gear) {
+    if (gear == null)
+      return;
+    if (!itemStackHasKey(gear, "progression_shovel"))
+      return;
     Inventory inventory = player.getInventory();
-    ItemStack pickaxe = inventoryContainsKey(inventory, "progression_pickaxe");
-    if (pickaxe != null) {
-      inventory.remove(pickaxe);
-      inventory.addItem(PickaxeLevelUtil.getPickaxeViaLevel(player.getUniqueId()));
-    }
+    inventory.remove(gear);
+    inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
+  }
+
+  public static void updatePickaxe(Player player, ItemStack gear) {
+    if (gear == null)
+      return;
+    if (!itemStackHasKey(gear, "progression_pickaxe"))
+      return;
+    Inventory inventory = player.getInventory();
+    inventory.remove(gear);
+    inventory.addItem(PickaxeLevelUtil.getPickaxeViaLevel(player.getUniqueId()));
   }
 
   public static ItemStack createCustomGear(String stringKey, Material material,

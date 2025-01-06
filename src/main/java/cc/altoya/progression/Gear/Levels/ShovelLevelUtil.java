@@ -22,6 +22,25 @@ public class ShovelLevelUtil {
     return thresholds.length + 1;
   }
 
+  public static int getExperienceFromBreak(Material material) {
+    return switch (material) {
+      case DIRT -> 1;
+      case GRASS_BLOCK -> 2;
+      case SAND -> 3;
+      case GRAVEL -> 4;
+      case CLAY -> 5;
+      case SOUL_SAND -> 6;
+      default -> 0;
+    };
+  }
+
+  public static boolean willPlayerUpdateShovel(UUID uuid, int xpGain) {
+    int currentLevel = getShovelLevelFromXp(SingletonExperienceBank.getExperience(Experience.SHOVEL, uuid));
+    int newLevel = getShovelLevelFromXp(SingletonExperienceBank.getExperience(Experience.SHOVEL, uuid) + xpGain);
+
+    return newLevel > currentLevel;
+  }
+
   public static ItemStack getShovelViaLevel(UUID uuid) {
     int experience = SingletonExperienceBank.getExperience(Experience.SHOVEL, uuid);
     int level = getShovelLevelFromXp(experience);
@@ -60,7 +79,7 @@ public class ShovelLevelUtil {
           }
         });
       }
-      case 6-> {
+      case 6 -> {
         return GearUtil.createCustomGear(key, Material.GOLDEN_SHOVEL, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 3);

@@ -22,6 +22,25 @@ public class AxeLevelUtil {
     return thresholds.length + 1;
   }
 
+  public static boolean willPlayerUpdateAxe(UUID uuid, int xpGain){
+    int currentLevel = getAxeLevelFromXp(SingletonExperienceBank.getExperience(Experience.AXE, uuid));
+    int newLevel = getAxeLevelFromXp(SingletonExperienceBank.getExperience(Experience.AXE, uuid) + xpGain);
+
+    return newLevel > currentLevel;
+  }
+
+  public static int getExperienceFromBreak(Material material) {
+    return switch (material) {
+      case OAK_LOG -> 1;
+      case BIRCH_LOG -> 2;
+      case SPRUCE_LOG -> 3;
+      case JUNGLE_LOG -> 4;
+      case ACACIA_LOG -> 5;
+      case DARK_OAK_LOG -> 6;
+      default -> 0;
+    };
+  }
+
   public static ItemStack getAxeViaLevel(UUID uuid) {
     int experience = SingletonExperienceBank.getExperience(Experience.AXE, uuid);
     int level = getAxeLevelFromXp(experience);

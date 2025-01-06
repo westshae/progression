@@ -20,9 +20,31 @@ public class PickaxeLevelUtil {
       }
     }
     return thresholds.length + 1;
-  }
+    }
 
-  public static ItemStack getPickaxeViaLevel(UUID uuid) {
+    public static boolean willPlayerUpdatePickaxe(UUID uuid, int xpGain){
+    int currentLevel = getPickaxeLevelFromXp(SingletonExperienceBank.getExperience(Experience.PICKAXE, uuid));
+    int newLevel = getPickaxeLevelFromXp(SingletonExperienceBank.getExperience(Experience.PICKAXE, uuid) + xpGain);
+
+    return newLevel > currentLevel;
+    }
+
+    public static int getExperienceFromBreak(Material material) {
+      return switch (material) {
+        case STONE -> 1;
+        case COAL_ORE -> 2;
+        case COPPER_ORE -> 3;
+        case IRON_ORE -> 4;
+        case LAPIS_ORE -> 5;
+        case REDSTONE_ORE -> 6;
+        case GOLD_ORE -> 7;
+        case DIAMOND_ORE -> 8;
+        case EMERALD_ORE -> 9;
+        default -> 0;
+      };
+    }  
+
+    public static ItemStack getPickaxeViaLevel(UUID uuid) {
     int experience = SingletonExperienceBank.getExperience(Experience.PICKAXE, uuid);
     int level = getPickaxeLevelFromXp(experience);
 
