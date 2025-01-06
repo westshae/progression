@@ -13,6 +13,7 @@ import cc.altoya.progression.Experience.Experience;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
+import cc.altoya.progression.Gear.Levels.MeleeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
 import cc.altoya.progression.Util.GeneralUtil;
@@ -60,6 +61,8 @@ public class GearUtil {
       inventory.addItem(HoeLevelUtil.getHoeViaLevel(player.getUniqueId()));
     if (inventoryContainsKey(inventory, "progression_fishing") == null)
       inventory.addItem(FishingLevelUtil.getFishingViaLevel(player.getUniqueId()));
+    if (inventoryContainsKey(inventory, "progression_melee") == null)
+      inventory.addItem(MeleeLevelUtil.getMeleeViaLevel(player.getUniqueId()));
 
   }
 
@@ -108,11 +111,23 @@ public class GearUtil {
         updateHoe(player, gear);
       case FISHING ->
         updateFishing(player, gear);
+      case MELEE ->
+        updateMelee(player, gear);
 
       default -> {
         return;
       }
     }
+  }
+
+  public static void updateMelee(Player player, ItemStack gear) {
+    if (gear == null)
+      return;
+    if (!itemStackHasKey(gear, "progression_melee"))
+      return;
+    Inventory inventory = player.getInventory();
+    inventory.remove(gear);
+    inventory.addItem(MeleeLevelUtil.getMeleeViaLevel(player.getUniqueId()));
   }
 
   public static void updateHoe(Player player, ItemStack gear) {

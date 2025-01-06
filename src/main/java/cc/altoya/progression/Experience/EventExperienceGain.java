@@ -9,6 +9,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -16,6 +17,7 @@ import cc.altoya.progression.Gear.GearUtil;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
+import cc.altoya.progression.Gear.Levels.MeleeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
 import cc.altoya.progression.Util.ChatUtil;
@@ -80,6 +82,48 @@ public class EventExperienceGain implements Listener {
       case SHOVEL -> ChatUtil.sendSuccessMessage(event.getPlayer(), "Your shovel has leveled up!");
       case AXE -> ChatUtil.sendSuccessMessage(event.getPlayer(), "Your axe has leveled up!");
       case HOE -> ChatUtil.sendSuccessMessage(event.getPlayer(), "Your hoe has leveled up!");
+    }
+  }
+
+  @EventHandler
+  public void handleEntityKill(EntityDeathEvent event) {
+    if (event.getEntity().getKiller() == null) {
+      return;
+    }
+
+    ItemStack gear = event.getEntity().getKiller().getInventory().getItemInMainHand();
+    Experience xpType = switch (gear.getType()) {
+      case WOODEN_SWORD, STONE_SWORD, GOLDEN_SWORD, IRON_SWORD, DIAMOND_SWORD, NETHERITE_SWORD, TRIDENT -> 
+        Experience.MELEE;
+      // case BOW, CROSSBOW -> 
+      //   Experience.RANGED;
+      default -> null;
+    };
+
+    if (xpType == null) {
+      return;
+    }
+
+    UUID uuid = event.getEntity().getKiller().getUniqueId();
+    int xpAmount = MeleeLevelUtil.getExperienceFromBreak(event.getEntity());
+
+    boolean willPlayerUpgrade = switch (xpType) {
+      case MELEE -> MeleeLevelUtil.willPlayerUpdateMelee(uuid, xpAmount);
+      // case BOW -> false;   // Add BowLevelUtil method here
+      default -> false;
+    };
+
+    SingletonExperienceBank.addExperience(xpType, uuid, xpAmount);
+    ChatUtil.sendSuccessBar(event.getEntity().getKiller(),
+      xpType.toString() + " XP: " + SingletonExperienceBank.getExperience(xpType, uuid));
+
+    if (!willPlayerUpgrade)
+      return;
+    GearUtil.updatePlayerGear(event.getEntity().getKiller(), xpType, gear);
+
+    switch (xpType) {
+      case MELEE -> ChatUtil.sendSuccessMessage(event.getEntity().getKiller(), "Your sword has leveled up!");
+      // case RANGED -> ChatUtil.sendSuccessMessage(event.getEntity().getKiller(), "Your bow has leveled up!");
     }
   }
 
