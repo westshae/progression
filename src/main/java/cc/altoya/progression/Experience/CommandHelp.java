@@ -16,6 +16,6 @@ public class CommandHelp {
     }
 
     private static void help(Player player) {
-        ChatUtil.sendCommandHelpMessage(player, "/alliance", ExperienceUtil.getExperienceCommands());
+        ChatUtil.sendCommandHelpMessage(player, "/experience", ExperienceUtil.getExperienceCommands());
     }
 }
