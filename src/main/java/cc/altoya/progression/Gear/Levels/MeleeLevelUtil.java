@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 public class MeleeLevelUtil {
   private static int getMeleeLevelFromXp(int xp) {
-    int[] thresholds = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100 }; // 20 levels
+    int[] thresholds = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90 }; // 18 levels
     for (int i = 0; i < thresholds.length; i++) {
       if (xp <= thresholds[i]) {
         return i + 1;
@@ -210,30 +210,14 @@ public class MeleeLevelUtil {
           }
         });
       }
-      case 19 -> {
-        return GearUtil.createCustomGear(key, Material.TRIDENT, new HashMap<Enchantment, Integer>() {
-          {
-            put(Enchantment.LOYALTY, 1);
-            put(Enchantment.IMPALING, 5);
-          }
-        });
-      }
-      case 20 -> {
-        return GearUtil.createCustomGear(key, Material.TRIDENT, new HashMap<Enchantment, Integer>() {
-          {
-            put(Enchantment.LOYALTY, 1);
-            put(Enchantment.IMPALING, 5);
-            put(Enchantment.RIPTIDE, 3);
-          }
-        });
-      }
 
       default -> {
-        return GearUtil.createCustomGear(key, Material.TRIDENT, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
           {
-            put(Enchantment.LOYALTY, 1);
-            put(Enchantment.IMPALING, 5);
-            put(Enchantment.RIPTIDE, 3);
+            put(Enchantment.SHARPNESS, 5);
+            put(Enchantment.LOOTING, 3);
+            put(Enchantment.SWEEPING_EDGE, 3);
+            put(Enchantment.FIRE_ASPECT, 2);
           }
         });
       }
