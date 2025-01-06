@@ -23,6 +23,8 @@ public class MainGear implements CommandExecutor{
         }
 
         switch (args[0].toLowerCase()) {
+            case "update":
+                return CommandUpdateGear.handle((Player) sender, args);
             case "help":
                 return CommandHelp.handle((Player) sender, args);
         }

@@ -8,6 +8,7 @@ public class EventFirstGear implements Listener {
 
   @EventHandler
   public void onPlayerFirstJoin(PlayerJoinEvent event) {
-    GearUtil.updatePlayerGear(event.getPlayer());
+    if(event.getPlayer().hasPlayedBefore()) return;
+    GearUtil.initPlayerGear(event.getPlayer());
   }
 }
