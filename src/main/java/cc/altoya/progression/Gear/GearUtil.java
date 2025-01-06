@@ -9,6 +9,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 
+import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
+import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
+import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
 import cc.altoya.progression.Util.GeneralUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -45,7 +48,12 @@ public class GearUtil {
   public static void initPlayerGear(Player player) {
     Inventory inventory = player.getInventory();
     if (inventoryContainsKey(inventory, "progression_pickaxe") == null)
-      inventory.addItem(LevelsUtil.getPickaxeViaLevel(player.getUniqueId()));
+      inventory.addItem(PickaxeLevelUtil.getPickaxeViaLevel(player.getUniqueId()));
+    if (inventoryContainsKey(inventory, "progression_axe") == null)
+      inventory.addItem(AxeLevelUtil.getAxeViaLevel(player.getUniqueId()));
+    if (inventoryContainsKey(inventory, "progression_shovel") == null)
+      inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
+
   }
 
   public static ItemStack inventoryContainsKey(Inventory inventory, String stringKey) {
@@ -69,6 +77,25 @@ public class GearUtil {
 
   public static void updatePlayerGear(Player player) {
     updatePickaxe(player);
+    updateAxe(player);
+    updateShovel(player);
+  }
+  public static void updateAxe(Player player) {
+    Inventory inventory = player.getInventory();
+    ItemStack axe = inventoryContainsKey(inventory, "progression_axe");
+    if (axe != null) {
+      inventory.remove(axe);
+      inventory.addItem(AxeLevelUtil.getAxeViaLevel(player.getUniqueId()));
+    }
+  }
+
+  public static void updateShovel(Player player) {
+    Inventory inventory = player.getInventory();
+    ItemStack shovel = inventoryContainsKey(inventory, "progression_shovel");
+    if (shovel != null) {
+      inventory.remove(shovel);
+      inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
+    }
   }
 
   public static void updatePickaxe(Player player) {
@@ -76,7 +103,7 @@ public class GearUtil {
     ItemStack pickaxe = inventoryContainsKey(inventory, "progression_pickaxe");
     if (pickaxe != null) {
       inventory.remove(pickaxe);
-      inventory.addItem(LevelsUtil.getPickaxeViaLevel(player.getUniqueId()));
+      inventory.addItem(PickaxeLevelUtil.getPickaxeViaLevel(player.getUniqueId()));
     }
   }
 

@@ -1,16 +1,17 @@
-package cc.altoya.progression.Gear;
+package cc.altoya.progression.Gear.Levels;
 
 import java.util.HashMap;
 import java.util.UUID;
 
 import cc.altoya.progression.Experience.Experience;
 import cc.altoya.progression.Experience.SingletonExperienceBank;
+import cc.altoya.progression.Gear.GearUtil;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
-public class LevelsUtil {
+public class PickaxeLevelUtil {
   private static int getPickaxeLevelFromXp(int xp) {
     int[] thresholds = { 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70 }; // 14 levels
     for (int i = 0; i < thresholds.length; i++) {
@@ -22,12 +23,12 @@ public class LevelsUtil {
   }
 
   public static ItemStack getPickaxeViaLevel(UUID uuid) {
-    int miningExperience = SingletonExperienceBank.getExperience(Experience.PICKAXE, uuid);
-    int miningLevel = getPickaxeLevelFromXp(miningExperience);
+    int experience = SingletonExperienceBank.getExperience(Experience.PICKAXE, uuid);
+    int level = getPickaxeLevelFromXp(experience);
 
     String key = "progression_pickaxe";
 
-    switch (miningLevel) {
+    switch (level) {
       case 1 -> {
         return GearUtil.createCustomGear(key, Material.WOODEN_PICKAXE, new HashMap<Enchantment, Integer>());
       }
