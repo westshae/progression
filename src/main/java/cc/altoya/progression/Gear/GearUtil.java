@@ -11,6 +11,7 @@ import org.bukkit.enchantments.Enchantment;
 
 import cc.altoya.progression.Experience.Experience;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
+import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
 import cc.altoya.progression.Util.GeneralUtil;
@@ -54,6 +55,8 @@ public class GearUtil {
       inventory.addItem(AxeLevelUtil.getAxeViaLevel(player.getUniqueId()));
     if (inventoryContainsKey(inventory, "progression_shovel") == null)
       inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
+    if (inventoryContainsKey(inventory, "progression_hoe") == null)
+      inventory.addItem(HoeLevelUtil.getHoeViaLevel(player.getUniqueId()));
 
   }
 
@@ -98,10 +101,23 @@ public class GearUtil {
         updatePickaxe(player, gear);
       case SHOVEL ->
         updateShovel(player, gear);
+      case HOE ->
+        updateHoe(player, gear);
+
       default -> {
         return;
       }
     }
+  }
+
+  public static void updateHoe(Player player, ItemStack gear) {
+    if (gear == null)
+      return;
+    if (!itemStackHasKey(gear, "progression_hoe"))
+      return;
+    Inventory inventory = player.getInventory();
+    inventory.remove(gear);
+    inventory.addItem(HoeLevelUtil.getHoeViaLevel(player.getUniqueId()));
   }
 
   public static void updateAxe(Player player, ItemStack gear) {
