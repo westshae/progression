@@ -15,6 +15,7 @@ import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
 import cc.altoya.progression.Gear.Levels.MeleeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
+import cc.altoya.progression.Gear.Levels.RangedLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
 import cc.altoya.progression.Util.GeneralUtil;
 import org.bukkit.Material;
@@ -63,6 +64,8 @@ public class GearUtil {
       inventory.addItem(FishingLevelUtil.getFishingViaLevel(player.getUniqueId()));
     if (inventoryContainsKey(inventory, "progression_melee") == null)
       inventory.addItem(MeleeLevelUtil.getMeleeViaLevel(player.getUniqueId()));
+    if (inventoryContainsKey(inventory, "progression_ranged") == null)
+      inventory.addItem(RangedLevelUtil.getRangedViaLevel(player.getUniqueId()));
 
   }
 
@@ -113,11 +116,23 @@ public class GearUtil {
         updateFishing(player, gear);
       case MELEE ->
         updateMelee(player, gear);
+      case RANGED ->
+        updateRanged(player, gear);
 
       default -> {
         return;
       }
     }
+  }
+
+  public static void updateRanged(Player player, ItemStack gear) {
+    if (gear == null)
+      return;
+    if (!itemStackHasKey(gear, "progression_ranged"))
+      return;
+    Inventory inventory = player.getInventory();
+    inventory.remove(gear);
+    inventory.addItem(RangedLevelUtil.getRangedViaLevel(player.getUniqueId()));
   }
 
   public static void updateMelee(Player player, ItemStack gear) {

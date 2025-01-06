@@ -19,6 +19,7 @@ import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
 import cc.altoya.progression.Gear.Levels.MeleeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
+import cc.altoya.progression.Gear.Levels.RangedLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
 import cc.altoya.progression.Util.ChatUtil;
 
@@ -50,6 +51,10 @@ public class EventExperienceGain implements Listener {
       case HOE -> HoeLevelUtil.getExperienceFromBreak(blockType);
       default -> 0;
     };
+
+    if (xpAmount == 0) {
+      return;
+    }
 
     if (xpAmount > 0 && xpType == Experience.HOE) {
       if (event.getBlock().getBlockData() instanceof Ageable ageable) {
@@ -93,10 +98,10 @@ public class EventExperienceGain implements Listener {
 
     ItemStack gear = event.getEntity().getKiller().getInventory().getItemInMainHand();
     Experience xpType = switch (gear.getType()) {
-      case WOODEN_SWORD, STONE_SWORD, GOLDEN_SWORD, IRON_SWORD, DIAMOND_SWORD, NETHERITE_SWORD, TRIDENT -> 
+      case WOODEN_SWORD, STONE_SWORD, GOLDEN_SWORD, IRON_SWORD, DIAMOND_SWORD, NETHERITE_SWORD, TRIDENT ->
         Experience.MELEE;
-      // case BOW, CROSSBOW -> 
-      //   Experience.RANGED;
+      case BOW, CROSSBOW ->
+        Experience.RANGED;
       default -> null;
     };
 
@@ -105,17 +110,26 @@ public class EventExperienceGain implements Listener {
     }
 
     UUID uuid = event.getEntity().getKiller().getUniqueId();
-    int xpAmount = MeleeLevelUtil.getExperienceFromBreak(event.getEntity());
+    
+     int xpAmount = switch (xpType) {
+      case MELEE -> MeleeLevelUtil.getExperienceFromKill(event.getEntity());
+      case RANGED -> RangedLevelUtil.getExperienceFromKill(event.getEntity());
+      default -> 0;
+    };
+
+    if (xpAmount == 0) {
+      return;
+    }
 
     boolean willPlayerUpgrade = switch (xpType) {
       case MELEE -> MeleeLevelUtil.willPlayerUpdateMelee(uuid, xpAmount);
-      // case BOW -> false;   // Add BowLevelUtil method here
+      case RANGED -> RangedLevelUtil.willPlayerUpdateRanged(uuid, xpAmount);
       default -> false;
     };
 
     SingletonExperienceBank.addExperience(xpType, uuid, xpAmount);
     ChatUtil.sendSuccessBar(event.getEntity().getKiller(),
-      xpType.toString() + " XP: " + SingletonExperienceBank.getExperience(xpType, uuid));
+        xpType.toString() + " XP: " + SingletonExperienceBank.getExperience(xpType, uuid));
 
     if (!willPlayerUpgrade)
       return;
@@ -123,7 +137,7 @@ public class EventExperienceGain implements Listener {
 
     switch (xpType) {
       case MELEE -> ChatUtil.sendSuccessMessage(event.getEntity().getKiller(), "Your sword has leveled up!");
-      // case RANGED -> ChatUtil.sendSuccessMessage(event.getEntity().getKiller(), "Your bow has leveled up!");
+      case RANGED -> ChatUtil.sendSuccessMessage(event.getEntity().getKiller(), "Your bow has leveled up!");
     }
   }
 
@@ -149,6 +163,10 @@ public class EventExperienceGain implements Listener {
     }
 
     int xpAmount = FishingLevelUtil.getExperienceFromCatch(fish.getType());
+
+    if (xpAmount == 0) {
+      return;
+    }
 
     UUID uuid = event.getPlayer().getUniqueId();
 

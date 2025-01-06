@@ -31,7 +31,7 @@ public class MeleeLevelUtil {
     return newLevel > currentLevel;
   }
 
-  public static int getExperienceFromBreak(Entity entity) {
+  public static int getExperienceFromKill(Entity entity) {
     return switch (entity.getType()) {
       case ZOMBIE -> 1;
       case SKELETON -> 2;
