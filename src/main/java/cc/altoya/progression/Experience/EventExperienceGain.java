@@ -4,13 +4,17 @@ import java.util.UUID;
 
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
 import cc.altoya.progression.Gear.GearUtil;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
+import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
@@ -47,9 +51,9 @@ public class EventExperienceGain implements Listener {
 
     if (xpAmount > 0 && xpType == Experience.HOE) {
       if (event.getBlock().getBlockData() instanceof Ageable ageable) {
-      if (ageable.getAge() < ageable.getMaximumAge()) {
-        return;
-      }
+        if (ageable.getAge() < ageable.getMaximumAge()) {
+          return;
+        }
       }
     }
 
@@ -78,4 +82,43 @@ public class EventExperienceGain implements Listener {
       case HOE -> ChatUtil.sendSuccessMessage(event.getPlayer(), "Your hoe has leveled up!");
     }
   }
+
+  @EventHandler
+  public void handleFishCaught(PlayerFishEvent event) {
+    ItemStack gear = event.getPlayer().getInventory().getItemInMainHand();
+    if (gear.getType() != Material.FISHING_ROD) {
+      return;
+    }
+    Experience xpType = Experience.FISHING;
+
+    if (event.getState() != PlayerFishEvent.State.CAUGHT_FISH) {
+      return;
+    }
+
+    Entity caughtEntity = event.getCaught();
+    ItemStack fish = null;
+    if (caughtEntity instanceof Item) {
+      Item caughtItem = (Item) caughtEntity;
+      fish = caughtItem.getItemStack();
+    } else {
+      return;
+    }
+
+    int xpAmount = FishingLevelUtil.getExperienceFromCatch(fish.getType());
+
+    UUID uuid = event.getPlayer().getUniqueId();
+
+    boolean willPlayerUpgrade = FishingLevelUtil.willPlayerUpdateFishing(uuid, xpAmount);
+
+    SingletonExperienceBank.addExperience(xpType, uuid, xpAmount);
+    ChatUtil.sendSuccessBar(event.getPlayer(),
+        xpType.toString() + " XP: " + SingletonExperienceBank.getExperience(xpType, uuid));
+
+    if (!willPlayerUpgrade)
+      return;
+    GearUtil.updatePlayerGear(event.getPlayer(), xpType, gear);
+
+    ChatUtil.sendSuccessMessage(event.getPlayer(), "Your fishing rod has leveled up!");
+  }
+
 }

@@ -11,6 +11,7 @@ import org.bukkit.enchantments.Enchantment;
 
 import cc.altoya.progression.Experience.Experience;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
+import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
@@ -57,6 +58,8 @@ public class GearUtil {
       inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
     if (inventoryContainsKey(inventory, "progression_hoe") == null)
       inventory.addItem(HoeLevelUtil.getHoeViaLevel(player.getUniqueId()));
+    if (inventoryContainsKey(inventory, "progression_fishing") == null)
+      inventory.addItem(FishingLevelUtil.getFishingViaLevel(player.getUniqueId()));
 
   }
 
@@ -103,6 +106,8 @@ public class GearUtil {
         updateShovel(player, gear);
       case HOE ->
         updateHoe(player, gear);
+      case FISHING ->
+        updateFishing(player, gear);
 
       default -> {
         return;
@@ -148,6 +153,16 @@ public class GearUtil {
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
     inventory.addItem(PickaxeLevelUtil.getPickaxeViaLevel(player.getUniqueId()));
+  }
+
+  public static void updateFishing(Player player, ItemStack gear) {
+    if (gear == null)
+      return;
+    if (!itemStackHasKey(gear, "progression_fishing"))
+      return;
+    Inventory inventory = player.getInventory();
+    inventory.remove(gear);
+    inventory.addItem(FishingLevelUtil.getFishingViaLevel(player.getUniqueId()));
   }
 
   public static ItemStack createCustomGear(String stringKey, Material material,
