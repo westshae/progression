@@ -18,6 +18,7 @@ import cc.altoya.progression.Gear.Levels.MeleeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.RangedLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
+import cc.altoya.progression.Util.ChatUtil;
 import cc.altoya.progression.Util.GeneralUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -151,10 +152,12 @@ public class GearUtil {
   }
 
   public static void updateRanged(Player player, ItemStack gear) {
-    if (gear != null)
+    if (gear == null)
       return;
+
     if (!itemStackHasKey(gear, "progression_ranged"))
       return;
+
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
     inventory.addItem(RangedLevelUtil.getRangedViaLevel(player.getUniqueId()));
