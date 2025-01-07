@@ -13,7 +13,10 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.inventory.ItemStack;
 
+import com.destroystokyo.paper.event.player.PlayerPickupExperienceEvent;
+
 import cc.altoya.progression.Gear.GearUtil;
+import cc.altoya.progression.Gear.Levels.ArmourLevelUtil;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
@@ -110,8 +113,8 @@ public class EventExperienceGain implements Listener {
     }
 
     UUID uuid = event.getEntity().getKiller().getUniqueId();
-    
-     int xpAmount = switch (xpType) {
+
+    int xpAmount = switch (xpType) {
       case MELEE -> MeleeLevelUtil.getExperienceFromKill(event.getEntity());
       case RANGED -> RangedLevelUtil.getExperienceFromKill(event.getEntity());
       default -> 0;
@@ -181,6 +184,42 @@ public class EventExperienceGain implements Listener {
     GearUtil.updatePlayerGear(event.getPlayer(), xpType, gear);
 
     ChatUtil.sendSuccessMessage(event.getPlayer(), "Your fishing rod has leveled up!");
+  }
+
+  @EventHandler
+  public void handleFishCaught(PlayerPickupExperienceEvent event) {
+    Experience xpType = Experience.ARMOUR;
+
+    int xpAmount = event.getExperienceOrb().getExperience();
+
+    if (xpAmount == 0) {
+      return;
+    }
+
+    UUID uuid = event.getPlayer().getUniqueId();
+
+    boolean willPlayerUpgrade = ArmourLevelUtil.willPlayerUpdateArmour(uuid, xpAmount);
+
+    SingletonExperienceBank.addExperience(xpType, uuid, xpAmount);
+    ChatUtil.sendSuccessBar(event.getPlayer(),
+        xpType.toString() + " XP: " + SingletonExperienceBank.getExperience(xpType, uuid));
+
+    if (!willPlayerUpgrade)
+      return;
+
+    ItemStack[] currentArmour = event.getPlayer().getInventory().getArmorContents();
+    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaLevel(event.getPlayer().getUniqueId());
+
+    for (int i = 0; i < 4; i++) {
+      event.getPlayer().getInventory().remove(currentArmour[i]);
+    }
+
+    event.getPlayer().getInventory().setHelmet(newArmour[0]);
+    event.getPlayer().getInventory().setChestplate(newArmour[1]);
+    event.getPlayer().getInventory().setLeggings(newArmour[2]);
+    event.getPlayer().getInventory().setBoots(newArmour[3]);
+
+    ChatUtil.sendSuccessMessage(event.getPlayer(), "Your armour has leveled up!");
   }
 
 }

@@ -10,6 +10,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 
 import cc.altoya.progression.Experience.Experience;
+import cc.altoya.progression.Gear.Levels.ArmourLevelUtil;
 import cc.altoya.progression.Gear.Levels.AxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.FishingLevelUtil;
 import cc.altoya.progression.Gear.Levels.HoeLevelUtil;
@@ -22,6 +23,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
@@ -66,7 +68,14 @@ public class GearUtil {
       inventory.addItem(MeleeLevelUtil.getMeleeViaLevel(player.getUniqueId()));
     if (inventoryContainsKey(inventory, "progression_ranged") == null)
       inventory.addItem(RangedLevelUtil.getRangedViaLevel(player.getUniqueId()));
-
+    if (inventoryContainsKey(inventory, "progression_armour") == null){
+      ItemStack[] newArmour = ArmourLevelUtil.getArmourViaLevel(player.getUniqueId());
+      PlayerInventory playerInventory = (PlayerInventory) inventory;
+      playerInventory.setHelmet(newArmour[0]);
+      playerInventory.setChestplate(newArmour[1]);
+      playerInventory.setLeggings(newArmour[2]);
+      playerInventory.setBoots(newArmour[3]);
+    }
   }
 
   public static ItemStack inventoryContainsKey(Inventory inventory, String stringKey) {
@@ -118,6 +127,8 @@ public class GearUtil {
         updateMelee(player, gear);
       case RANGED ->
         updateRanged(player, gear);
+      case ARMOUR ->
+        updateArmour(player);
 
       default -> {
         return;
@@ -125,8 +136,22 @@ public class GearUtil {
     }
   }
 
+  public static void updateArmour(Player player) {
+    ItemStack[] currentArmour = player.getInventory().getArmorContents();
+    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaLevel(player.getUniqueId());
+
+    for (int i = 0; i < 4; i++) {
+      player.getInventory().remove(currentArmour[i]);
+    }
+
+    player.getInventory().setHelmet(newArmour[0]);
+    player.getInventory().setChestplate(newArmour[1]);
+    player.getInventory().setLeggings(newArmour[2]);
+    player.getInventory().setBoots(newArmour[3]);
+  }
+
   public static void updateRanged(Player player, ItemStack gear) {
-    if (gear == null)
+    if (gear != null)
       return;
     if (!itemStackHasKey(gear, "progression_ranged"))
       return;
