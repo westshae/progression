@@ -18,8 +18,8 @@ import cc.altoya.progression.Gear.Levels.MeleeLevelUtil;
 import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.RangedLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
-import cc.altoya.progression.Util.ChatUtil;
 import cc.altoya.progression.Util.GeneralUtil;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -48,29 +48,57 @@ public class GearUtil {
   public static HashMap<String, String> getGearCommands() {
     HashMap<String, String> commands = new HashMap<>();
     commands.put("/gear update", "Updates the gear in your inventory if it's behind.");
+    commands.put("/gear view {gui-type}", "View gear level information. Valid types: pickaxe, axe, shovel, hoe, fishing, melee, ranged, armour1, armour2, armour3");
     commands.put("/gear help", "The command you're looking at right now.");
 
     return commands;
   }
 
+
+  public static void viewGearInventory(Player player, String gearType) {
+
+    switch (gearType) {
+      case "pickaxe" -> GuiUtil.viewPickaxeGui(player);
+      case "axe" -> GuiUtil.viewAxeGui(player);
+      case "shovel" -> GuiUtil.viewShovelGui(player);
+      case "hoe" -> GuiUtil.viewHoeGui(player);
+      case "fishing" -> GuiUtil.viewFishingGui(player);
+      case "melee" -> GuiUtil.viewMeleeGui(player);
+      case "ranged" -> GuiUtil.viewRangedGui(player);
+      case "armour1" -> GuiUtil.viewArmour1Gui(player);
+      case "armour2" -> GuiUtil.viewArmour2Gui(player);
+      case "armour3" -> GuiUtil.viewArmour3Gui(player);
+      default -> {
+        return;
+      }
+    }
+  }
+
   public static void initPlayerGear(Player player) {
     Inventory inventory = player.getInventory();
     if (inventoryContainsKey(inventory, "progression_pickaxe") == null)
-      inventory.addItem(PickaxeLevelUtil.getPickaxeViaLevel(player.getUniqueId()));
+      inventory.addItem(PickaxeLevelUtil.getPickaxeViaUuid(player.getUniqueId()));
+
     if (inventoryContainsKey(inventory, "progression_axe") == null)
-      inventory.addItem(AxeLevelUtil.getAxeViaLevel(player.getUniqueId()));
+      inventory.addItem(AxeLevelUtil.getAxeViaUuid(player.getUniqueId()));
+
     if (inventoryContainsKey(inventory, "progression_shovel") == null)
-      inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
+      inventory.addItem(ShovelLevelUtil.getShovelViaUuid(player.getUniqueId()));
+
     if (inventoryContainsKey(inventory, "progression_hoe") == null)
-      inventory.addItem(HoeLevelUtil.getHoeViaLevel(player.getUniqueId()));
+      inventory.addItem(HoeLevelUtil.getHoeViaUuid(player.getUniqueId()));
+
     if (inventoryContainsKey(inventory, "progression_fishing") == null)
-      inventory.addItem(FishingLevelUtil.getFishingViaLevel(player.getUniqueId()));
+      inventory.addItem(FishingLevelUtil.getFishingViaUuid(player.getUniqueId()));
+
     if (inventoryContainsKey(inventory, "progression_melee") == null)
-      inventory.addItem(MeleeLevelUtil.getMeleeViaLevel(player.getUniqueId()));
+      inventory.addItem(MeleeLevelUtil.getMeleeViaUuid(player.getUniqueId()));
+
     if (inventoryContainsKey(inventory, "progression_ranged") == null)
-      inventory.addItem(RangedLevelUtil.getRangedViaLevel(player.getUniqueId()));
+      inventory.addItem(RangedLevelUtil.getRangedViaUuid(player.getUniqueId()));
+
     if (inventoryContainsKey(inventory, "progression_armour") == null){
-      ItemStack[] newArmour = ArmourLevelUtil.getArmourViaLevel(player.getUniqueId());
+      ItemStack[] newArmour = ArmourLevelUtil.getArmourViaUuid(player.getUniqueId());
       PlayerInventory playerInventory = (PlayerInventory) inventory;
       playerInventory.setHelmet(newArmour[0]);
       playerInventory.setChestplate(newArmour[1]);
@@ -139,7 +167,7 @@ public class GearUtil {
 
   public static void updateArmour(Player player) {
     ItemStack[] currentArmour = player.getInventory().getArmorContents();
-    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaLevel(player.getUniqueId());
+    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaUuid(player.getUniqueId());
 
     for (int i = 0; i < 4; i++) {
       player.getInventory().remove(currentArmour[i]);
@@ -160,7 +188,7 @@ public class GearUtil {
 
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
-    inventory.addItem(RangedLevelUtil.getRangedViaLevel(player.getUniqueId()));
+    inventory.addItem(RangedLevelUtil.getRangedViaUuid(player.getUniqueId()));
   }
 
   public static void updateMelee(Player player, ItemStack gear) {
@@ -170,7 +198,7 @@ public class GearUtil {
       return;
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
-    inventory.addItem(MeleeLevelUtil.getMeleeViaLevel(player.getUniqueId()));
+    inventory.addItem(MeleeLevelUtil.getMeleeViaUuid(player.getUniqueId()));
   }
 
   public static void updateHoe(Player player, ItemStack gear) {
@@ -180,7 +208,7 @@ public class GearUtil {
       return;
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
-    inventory.addItem(HoeLevelUtil.getHoeViaLevel(player.getUniqueId()));
+    inventory.addItem(HoeLevelUtil.getHoeViaUuid(player.getUniqueId()));
   }
 
   public static void updateAxe(Player player, ItemStack gear) {
@@ -190,7 +218,7 @@ public class GearUtil {
       return;
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
-    inventory.addItem(AxeLevelUtil.getAxeViaLevel(player.getUniqueId()));
+    inventory.addItem(AxeLevelUtil.getAxeViaUuid(player.getUniqueId()));
   }
 
   public static void updateShovel(Player player, ItemStack gear) {
@@ -200,7 +228,7 @@ public class GearUtil {
       return;
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
-    inventory.addItem(ShovelLevelUtil.getShovelViaLevel(player.getUniqueId()));
+    inventory.addItem(ShovelLevelUtil.getShovelViaUuid(player.getUniqueId()));
   }
 
   public static void updatePickaxe(Player player, ItemStack gear) {
@@ -210,7 +238,7 @@ public class GearUtil {
       return;
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
-    inventory.addItem(PickaxeLevelUtil.getPickaxeViaLevel(player.getUniqueId()));
+    inventory.addItem(PickaxeLevelUtil.getPickaxeViaUuid(player.getUniqueId()));
   }
 
   public static void updateFishing(Player player, ItemStack gear) {
@@ -220,7 +248,7 @@ public class GearUtil {
       return;
     Inventory inventory = player.getInventory();
     inventory.remove(gear);
-    inventory.addItem(FishingLevelUtil.getFishingViaLevel(player.getUniqueId()));
+    inventory.addItem(FishingLevelUtil.getFishingViaUuid(player.getUniqueId()));
   }
 
   public static ItemStack createCustomGear(String stringKey, Material material,

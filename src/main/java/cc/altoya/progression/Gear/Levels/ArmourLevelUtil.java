@@ -30,10 +30,14 @@ public class ArmourLevelUtil {
     return newLevel > currentLevel;
   }
 
-  public static ItemStack[] getArmourViaLevel(UUID uuid) {
+  public static ItemStack[] getArmourViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.ARMOUR, uuid);
     int level = getArmourLevelFromXp(experience);
 
+    return getArmourViaLevel(level);
+  }
+
+  public static ItemStack[] getArmourViaLevel(int level) {
     String key = "progression_armour";
 
     ItemStack[] gear = new ItemStack[4];

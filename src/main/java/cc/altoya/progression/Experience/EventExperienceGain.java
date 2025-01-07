@@ -208,7 +208,7 @@ public class EventExperienceGain implements Listener {
       return;
 
     ItemStack[] currentArmour = event.getPlayer().getInventory().getArmorContents();
-    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaLevel(event.getPlayer().getUniqueId());
+    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaUuid(event.getPlayer().getUniqueId());
 
     for (int i = 0; i < 4; i++) {
       event.getPlayer().getInventory().remove(currentArmour[i]);

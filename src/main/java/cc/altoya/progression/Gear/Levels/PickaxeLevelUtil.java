@@ -44,10 +44,14 @@ public class PickaxeLevelUtil {
       };
     }  
 
-    public static ItemStack getPickaxeViaLevel(UUID uuid) {
-    int experience = SingletonExperienceBank.getExperience(Experience.PICKAXE, uuid);
-    int level = getPickaxeLevelFromXp(experience);
+    public static ItemStack getPickaxeViaUuid(UUID uuid){
+      int experience = SingletonExperienceBank.getExperience(Experience.PICKAXE, uuid);
+      int level = getPickaxeLevelFromXp(experience);
+  
+      return getPickaxeViaLevel(level);
+    }
 
+    public static ItemStack getPickaxeViaLevel(int level) {
     String key = "progression_pickaxe";
 
     switch (level) {

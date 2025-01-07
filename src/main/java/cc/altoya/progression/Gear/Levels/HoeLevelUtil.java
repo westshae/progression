@@ -44,9 +44,15 @@ public class HoeLevelUtil {
     };
   }
 
-  public static ItemStack getHoeViaLevel(UUID uuid) {
+  public static ItemStack getHoeViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.HOE, uuid);
     int level = getHoeLevelFromXp(experience);
+
+    return getHoeViaLevel(level);
+  }
+
+
+  public static ItemStack getHoeViaLevel(int level) {
 
     String key = "progression_hoe";
 

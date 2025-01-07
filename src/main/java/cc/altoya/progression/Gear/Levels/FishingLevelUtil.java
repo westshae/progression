@@ -39,9 +39,15 @@ public class FishingLevelUtil {
     };
   }
 
-  public static ItemStack getFishingViaLevel(UUID uuid) {
+  public static ItemStack getFishingViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.FISHING, uuid);
     int level = getFishingLevelFromXp(experience);
+
+    return getFishingViaLevel(level);
+  }
+
+
+  public static ItemStack getFishingViaLevel(int level) {
 
     String key = "progression_fishing";
 

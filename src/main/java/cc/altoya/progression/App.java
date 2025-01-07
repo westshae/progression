@@ -11,6 +11,7 @@ import cc.altoya.progression.Experience.ExperienceUtil;
 import cc.altoya.progression.Experience.MainExperience;
 import cc.altoya.progression.Gear.EventFirstGear;
 import cc.altoya.progression.Gear.EventGearObtaining;
+import cc.altoya.progression.Gear.EventGuiDisableInteraction;
 import cc.altoya.progression.Gear.GearTabCompleter;
 import cc.altoya.progression.Gear.MainGear;
 
@@ -32,6 +33,8 @@ public class App extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new EventLoadData(), this);
         this.getServer().getPluginManager().registerEvents(new EventGearObtaining(), this);
         this.getServer().getPluginManager().registerEvents(new EventFirstGear(), this);
+        this.getServer().getPluginManager().registerEvents(new EventGuiDisableInteraction(), this);
+
     }
 
     @Override

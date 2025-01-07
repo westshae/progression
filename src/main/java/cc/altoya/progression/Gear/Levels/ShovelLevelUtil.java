@@ -41,9 +41,14 @@ public class ShovelLevelUtil {
     return newLevel > currentLevel;
   }
 
-  public static ItemStack getShovelViaLevel(UUID uuid) {
+  public static ItemStack getShovelViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.SHOVEL, uuid);
     int level = getShovelLevelFromXp(experience);
+
+    return getShovelViaLevel(level);
+  }
+
+  public static ItemStack getShovelViaLevel(int level) {
 
     String key = "progression_shovel";
 

@@ -54,10 +54,15 @@ public class RangedLevelUtil {
     };
   }
 
-  public static ItemStack getRangedViaLevel(UUID uuid) {
+  public static ItemStack getRangedViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.RANGED, uuid);
     int level = getRangedLevelFromXp(experience);
 
+    return getRangedViaLevel(level);
+  }
+
+
+  public static ItemStack getRangedViaLevel(int level) {
     String key = "progression_ranged";
 
     switch (level) {

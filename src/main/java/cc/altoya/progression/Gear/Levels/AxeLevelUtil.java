@@ -41,10 +41,15 @@ public class AxeLevelUtil {
     };
   }
 
-  public static ItemStack getAxeViaLevel(UUID uuid) {
+  public static ItemStack getAxeViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.AXE, uuid);
     int level = getAxeLevelFromXp(experience);
 
+    return getAxeViaLevel(level);
+  }
+
+
+  public static ItemStack getAxeViaLevel(int level) {
     String key = "progression_axe";
 
     switch (level) {

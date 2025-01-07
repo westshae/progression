@@ -54,10 +54,16 @@ public class MeleeLevelUtil {
     };
   }
 
-  public static ItemStack getMeleeViaLevel(UUID uuid) {
+  public static ItemStack getMeleeViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.MELEE, uuid);
     int level = getMeleeLevelFromXp(experience);
 
+    return getMeleeViaLevel(level);
+  }
+
+
+
+  public static ItemStack getMeleeViaLevel(int level) {
     String key = "progression_melee";
 
     switch (level) {
