@@ -87,6 +87,11 @@ public class EventGearObtaining implements Listener {
     }
   }
 
+  @EventHandler
+  public void onPlayerDeath(org.bukkit.event.entity.PlayerDeathEvent event) {
+    event.getDrops().removeIf(this::isDisabledItem);
+  }
+
   private boolean isDisabledItem(ItemStack item) {
     if (item == null || item.getType() == Material.AIR) {
       return false;
