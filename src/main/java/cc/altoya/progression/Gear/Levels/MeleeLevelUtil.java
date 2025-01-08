@@ -65,62 +65,63 @@ public class MeleeLevelUtil {
 
   public static ItemStack getMeleeViaLevel(int level) {
     String key = "progression_melee";
+    String levelString = Integer.toString(level);
 
     switch (level) {
       case 1 -> {
-        return GearUtil.createCustomGear(key, Material.WOODEN_SWORD, new HashMap<Enchantment, Integer>());
+        return GearUtil.createCustomGear(key, levelString, Material.WOODEN_SWORD, new HashMap<Enchantment, Integer>());
       }
       case 2 -> {
-        return GearUtil.createCustomGear(key, Material.WOODEN_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.WOODEN_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 1);
           }
         });
       }
       case 3 -> {
-        return GearUtil.createCustomGear(key, Material.STONE_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.STONE_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 1);
           }
         });
       }
       case 4 -> {
-        return GearUtil.createCustomGear(key, Material.STONE_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.STONE_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 2);
           }
         });
       }
       case 5 -> {
-        return GearUtil.createCustomGear(key, Material.GOLDEN_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 2);
           }
         });
       }
       case 6 -> {
-        return GearUtil.createCustomGear(key, Material.GOLDEN_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 3);
           }
         });
       }
       case 7 -> {
-        return GearUtil.createCustomGear(key, Material.IRON_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.IRON_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 3);
           }
         });
       }
       case 8 -> {
-        return GearUtil.createCustomGear(key, Material.IRON_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.IRON_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 4);
           }
         });
       }
       case 9 -> {
-        return GearUtil.createCustomGear(key, Material.IRON_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.IRON_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 4);
             put(Enchantment.LOOTING, 1);
@@ -129,7 +130,7 @@ public class MeleeLevelUtil {
         });
       }
       case 10 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 4);
             put(Enchantment.LOOTING, 1);
@@ -138,7 +139,7 @@ public class MeleeLevelUtil {
         });
       }
       case 11 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 1);
@@ -147,7 +148,7 @@ public class MeleeLevelUtil {
         });
       }
       case 12 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 2);
@@ -156,7 +157,7 @@ public class MeleeLevelUtil {
         });
       }
       case 13 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 2);
@@ -166,7 +167,7 @@ public class MeleeLevelUtil {
         });
       }
       case 14 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 2);
@@ -177,7 +178,7 @@ public class MeleeLevelUtil {
       }
 
       case 15 -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 2);
@@ -187,7 +188,7 @@ public class MeleeLevelUtil {
         });
       }
       case 16 -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 3);
@@ -197,7 +198,7 @@ public class MeleeLevelUtil {
         });
       }
       case 17 -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 3);
@@ -207,7 +208,7 @@ public class MeleeLevelUtil {
         });
       }
       case 18 -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 3);
@@ -218,7 +219,7 @@ public class MeleeLevelUtil {
       }
 
       default -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_SWORD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.SHARPNESS, 5);
             put(Enchantment.LOOTING, 3);

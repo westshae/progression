@@ -53,64 +53,65 @@ public class HoeLevelUtil {
 
 
   public static ItemStack getHoeViaLevel(int level) {
+    String levelString = Integer.toString(level);
 
     String key = "progression_hoe";
 
     switch (level) {
       case 1 -> {
-        return GearUtil.createCustomGear(key, Material.WOODEN_HOE, new HashMap<Enchantment, Integer>());
+        return GearUtil.createCustomGear(key, levelString, Material.WOODEN_HOE, new HashMap<Enchantment, Integer>());
       }
       case 2 -> {
-        return GearUtil.createCustomGear(key, Material.WOODEN_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.WOODEN_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 1);
           }
         });
       }
       case 3 -> {
-        return GearUtil.createCustomGear(key, Material.STONE_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.STONE_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 1);
           }
         });
       }
       case 4 -> {
-        return GearUtil.createCustomGear(key, Material.STONE_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.STONE_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 2);
           }
         });
       }
       case 5 -> {
-        return GearUtil.createCustomGear(key, Material.GOLDEN_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 2);
           }
         });
       }
       case 6 -> {
-        return GearUtil.createCustomGear(key, Material.GOLDEN_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 3);
           }
         });
       }
       case 7 -> {
-        return GearUtil.createCustomGear(key, Material.IRON_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.IRON_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 3);
           }
         });
       }
       case 8 -> {
-        return GearUtil.createCustomGear(key, Material.IRON_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.IRON_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 4);
           }
         });
       }
       case 9 -> {
-        return GearUtil.createCustomGear(key, Material.IRON_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.IRON_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 4);
             put(Enchantment.FORTUNE, 1);
@@ -118,7 +119,7 @@ public class HoeLevelUtil {
         });
       }
       case 10 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 4);
             put(Enchantment.FORTUNE, 1);
@@ -126,7 +127,7 @@ public class HoeLevelUtil {
         });
       }
       case 11 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 5);
             put(Enchantment.FORTUNE, 1);
@@ -134,7 +135,7 @@ public class HoeLevelUtil {
         });
       }
       case 12 -> {
-        return GearUtil.createCustomGear(key, Material.DIAMOND_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 5);
             put(Enchantment.FORTUNE, 2);
@@ -142,7 +143,7 @@ public class HoeLevelUtil {
         });
       }
       case 13 -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 5);
             put(Enchantment.FORTUNE, 2);
@@ -150,7 +151,7 @@ public class HoeLevelUtil {
         });
       }
       case 14 -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 5);
             put(Enchantment.FORTUNE, 3);
@@ -158,7 +159,7 @@ public class HoeLevelUtil {
         });
       }
       default -> {
-        return GearUtil.createCustomGear(key, Material.NETHERITE_HOE, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HOE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 5);
             put(Enchantment.FORTUNE, 3);

@@ -48,22 +48,23 @@ public class FishingLevelUtil {
 
 
   public static ItemStack getFishingViaLevel(int level) {
+    String levelString = Integer.toString(level);
 
     String key = "progression_fishing";
 
     switch (level) {
       case 1 -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>());
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>());
       }
       case 2 -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.LUCK_OF_THE_SEA, 1);
           }
         });
       }
       case 3 -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.LUCK_OF_THE_SEA, 1);
             put(Enchantment.LURE, 1);
@@ -71,7 +72,7 @@ public class FishingLevelUtil {
         });
       }
       case 4 -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.LUCK_OF_THE_SEA, 2);
             put(Enchantment.LURE, 1);
@@ -79,7 +80,7 @@ public class FishingLevelUtil {
         });
       }
       case 5 -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.LUCK_OF_THE_SEA, 2);
             put(Enchantment.LURE, 2);
@@ -87,7 +88,7 @@ public class FishingLevelUtil {
         });
       }
       case 6 -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.LUCK_OF_THE_SEA, 3);
             put(Enchantment.LURE, 2);
@@ -95,7 +96,7 @@ public class FishingLevelUtil {
         });
       }
       case 7 -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.LUCK_OF_THE_SEA, 3);
             put(Enchantment.LURE, 3);
@@ -104,7 +105,7 @@ public class FishingLevelUtil {
       }
 
       default -> {
-        return GearUtil.createCustomGear(key, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.FISHING_ROD, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.LUCK_OF_THE_SEA, 3);
             put(Enchantment.LURE, 3);

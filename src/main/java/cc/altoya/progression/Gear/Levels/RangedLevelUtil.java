@@ -64,34 +64,35 @@ public class RangedLevelUtil {
 
   public static ItemStack getRangedViaLevel(int level) {
     String key = "progression_ranged";
+    String levelString = Integer.toString(level);
 
     switch (level) {
       case 1 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>());
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>());
       }
       case 2 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.POWER, 1);
           }
         });
       }
       case 3 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.POWER, 2);
           }
         });
       }
       case 4 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.POWER, 3);
           }
         });
       }
       case 5 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.POWER, 3);
             put(Enchantment.FLAME, 1);
@@ -99,7 +100,7 @@ public class RangedLevelUtil {
         });
       }
       case 6 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.POWER, 4);
             put(Enchantment.FLAME, 1);
@@ -107,7 +108,7 @@ public class RangedLevelUtil {
         });
       }
       case 7 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.POWER, 4);
             put(Enchantment.FLAME, 1);
@@ -116,7 +117,7 @@ public class RangedLevelUtil {
         });
       }
       case 8 -> {
-        return GearUtil.createCustomGear(key, Material.BOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.BOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.POWER, 5);
             put(Enchantment.FLAME, 1);
@@ -125,7 +126,7 @@ public class RangedLevelUtil {
         });
       }
       case 9 -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 1);
             
@@ -133,7 +134,7 @@ public class RangedLevelUtil {
         });
       }
       case 10 -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 1);
             put(Enchantment.QUICK_CHARGE, 1);
@@ -141,7 +142,7 @@ public class RangedLevelUtil {
         });
       }
       case 11 -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 2);
             put(Enchantment.QUICK_CHARGE, 1);
@@ -149,7 +150,7 @@ public class RangedLevelUtil {
         });
       }
       case 12 -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 2);
             put(Enchantment.QUICK_CHARGE, 2);
@@ -157,7 +158,7 @@ public class RangedLevelUtil {
         });
       }
       case 13 -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 3);
             put(Enchantment.QUICK_CHARGE, 2);
@@ -165,7 +166,7 @@ public class RangedLevelUtil {
         });
       }
       case 14 -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 3);
             put(Enchantment.QUICK_CHARGE, 3);
@@ -173,7 +174,7 @@ public class RangedLevelUtil {
         });
       }
       case 15 -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 3);
             put(Enchantment.QUICK_CHARGE, 3);
@@ -182,7 +183,7 @@ public class RangedLevelUtil {
         });
       }
       default -> {
-        return GearUtil.createCustomGear(key, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.CROSSBOW, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PIERCING, 3);
             put(Enchantment.QUICK_CHARGE, 3);

@@ -2,7 +2,9 @@ package cc.altoya.progression.Gear;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
@@ -19,6 +21,9 @@ import cc.altoya.progression.Gear.Levels.PickaxeLevelUtil;
 import cc.altoya.progression.Gear.Levels.RangedLevelUtil;
 import cc.altoya.progression.Gear.Levels.ShovelLevelUtil;
 import cc.altoya.progression.Util.GeneralUtil;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.kyori.adventure.text.format.TextDecoration;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -251,7 +256,7 @@ public class GearUtil {
     inventory.addItem(FishingLevelUtil.getFishingViaUuid(player.getUniqueId()));
   }
 
-  public static ItemStack createCustomGear(String stringKey, Material material,
+  public static ItemStack createCustomGear(String stringKey, String level, Material material,
       HashMap<Enchantment, Integer> enchantments) {
     ItemStack gear = new ItemStack(material);
     ItemMeta meta = gear.getItemMeta();
@@ -266,6 +271,15 @@ public class GearUtil {
           meta.addEnchant(enchantment.getKey(), enchantment.getValue(), true);
         }
       }
+
+      List<Component> lore = meta.lore();
+
+      if (lore == null) {
+        lore = new ArrayList<>();
+      }
+
+      lore.add(Component.text("Level: " + level).decoration(TextDecoration.ITALIC, false).color(NamedTextColor.BLUE));
+      meta.lore(lore);
       meta.setUnbreakable(true);
       gear.setItemMeta(meta);
       return gear;
