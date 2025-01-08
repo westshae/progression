@@ -90,6 +90,7 @@ public class EventExperienceGain implements Listener {
       case SHOVEL -> ChatUtil.sendSuccessMessage(event.getPlayer(), "Your shovel has leveled up!");
       case AXE -> ChatUtil.sendSuccessMessage(event.getPlayer(), "Your axe has leveled up!");
       case HOE -> ChatUtil.sendSuccessMessage(event.getPlayer(), "Your hoe has leveled up!");
+      default -> {}
     }
   }
 
@@ -141,6 +142,7 @@ public class EventExperienceGain implements Listener {
     switch (xpType) {
       case MELEE -> ChatUtil.sendSuccessMessage(event.getEntity().getKiller(), "Your sword has leveled up!");
       case RANGED -> ChatUtil.sendSuccessMessage(event.getEntity().getKiller(), "Your bow has leveled up!");
+      default -> {}
     }
   }
 
