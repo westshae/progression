@@ -66,28 +66,28 @@ public class ShovelLevelUtil {
         });
       }
       case 3 -> {
-        return GearUtil.createCustomGear(key, levelString, Material.STONE_SHOVEL, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_SHOVEL, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 1);
           }
         });
       }
       case 4 -> {
-        return GearUtil.createCustomGear(key, levelString, Material.STONE_SHOVEL, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_SHOVEL, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 2);
           }
         });
       }
       case 5 -> {
-        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_SHOVEL, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.STONE_SHOVEL, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 2);
           }
         });
       }
       case 6 -> {
-        return GearUtil.createCustomGear(key, levelString, Material.GOLDEN_SHOVEL, new HashMap<Enchantment, Integer>() {
+        return GearUtil.createCustomGear(key, levelString, Material.STONE_SHOVEL, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.EFFICIENCY, 3);
           }
