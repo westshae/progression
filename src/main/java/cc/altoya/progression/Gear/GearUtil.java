@@ -103,12 +103,12 @@ public class GearUtil {
       inventory.addItem(RangedLevelUtil.getRangedViaUuid(player.getUniqueId()));
 
     if (inventoryContainsKey(inventory, "progression_armour") == null){
-      ItemStack[] newArmour = ArmourLevelUtil.getArmourViaUuid(player.getUniqueId());
+      ArrayList<ItemStack> newArmour = (ArrayList<ItemStack>) ArmourLevelUtil.getArmourViaUuid(player.getUniqueId());
       PlayerInventory playerInventory = (PlayerInventory) inventory;
-      playerInventory.setHelmet(newArmour[0]);
-      playerInventory.setChestplate(newArmour[1]);
-      playerInventory.setLeggings(newArmour[2]);
-      playerInventory.setBoots(newArmour[3]);
+      playerInventory.setHelmet(newArmour.get(0));
+      playerInventory.setChestplate(newArmour.get(1));
+      playerInventory.setLeggings(newArmour.get(2));
+      playerInventory.setBoots(newArmour.get(3));
     }
   }
 
@@ -172,16 +172,16 @@ public class GearUtil {
 
   public static void updateArmour(Player player) {
     ItemStack[] currentArmour = player.getInventory().getArmorContents();
-    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaUuid(player.getUniqueId());
+    ArrayList<ItemStack> newArmour = (ArrayList<ItemStack>) ArmourLevelUtil.getArmourViaUuid(player.getUniqueId());
 
     for (int i = 0; i < 4; i++) {
       player.getInventory().remove(currentArmour[i]);
     }
 
-    player.getInventory().setHelmet(newArmour[0]);
-    player.getInventory().setChestplate(newArmour[1]);
-    player.getInventory().setLeggings(newArmour[2]);
-    player.getInventory().setBoots(newArmour[3]);
+    player.getInventory().setHelmet(newArmour.get(0));
+    player.getInventory().setChestplate(newArmour.get(1));
+    player.getInventory().setLeggings(newArmour.get(2));
+    player.getInventory().setBoots(newArmour.get(3));
   }
 
   public static void updateRanged(Player player, ItemStack gear) {

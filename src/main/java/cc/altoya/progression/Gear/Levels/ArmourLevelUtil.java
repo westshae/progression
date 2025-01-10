@@ -1,6 +1,8 @@
 package cc.altoya.progression.Gear.Levels;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import cc.altoya.progression.Experience.Experience;
@@ -30,742 +32,738 @@ public class ArmourLevelUtil {
     return newLevel > currentLevel;
   }
 
-  public static ItemStack[] getArmourViaUuid(UUID uuid){
+  public static List<ItemStack> getArmourViaUuid(UUID uuid){
     int experience = SingletonExperienceBank.getExperience(Experience.ARMOUR, uuid);
     int level = getArmourLevelFromXp(experience);
 
     return getArmourViaLevel(level);
   }
 
-  public static ItemStack[] getArmourViaLevel(int level) {
+  public static List<ItemStack> getArmourViaLevel(int level) {
     String key = "progression_armour";
     String levelString = Integer.toString(level);
 
-    ItemStack[] gear = new ItemStack[4];
+    List<ItemStack> gear = new ArrayList<>();
 
     switch (level) {
       case 1 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_HELMET, new HashMap<Enchantment, Integer>());
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_CHESTPLATE, new HashMap<Enchantment, Integer>());
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_LEGGINGS, new HashMap<Enchantment, Integer>());
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_BOOTS, new HashMap<Enchantment, Integer>());
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_HELMET, new HashMap<Enchantment, Integer>()));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_CHESTPLATE, new HashMap<Enchantment, Integer>()));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_LEGGINGS, new HashMap<Enchantment, Integer>()));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_BOOTS, new HashMap<Enchantment, Integer>()));
       }
       case 2 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.LEATHER_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.LEATHER_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
+        }));
       }
       case 3 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
+        }));
       }
       case 4 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.CHAINMAIL_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
+        }));
       }
       case 5 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
+        }));
       }
       case 6 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
             put(Enchantment.FEATHER_FALLING, 1);
           }
-        });
+        }));
       }
       case 7 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.GOLDEN_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.GOLDEN_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
             put(Enchantment.FEATHER_FALLING, 2);
           }
-        });
+        }));
       }
       case 8 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.IRON_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.IRON_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.IRON_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.IRON_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
             put(Enchantment.FEATHER_FALLING, 2);
           }
-        });
+        }));
       }
       case 9 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.IRON_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.IRON_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.IRON_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.IRON_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
             put(Enchantment.FEATHER_FALLING, 2);
             put(Enchantment.DEPTH_STRIDER, 1);
           }
-        });
+        }));
       }
       case 10 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.IRON_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.IRON_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.IRON_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.IRON_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.IRON_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
             put(Enchantment.FEATHER_FALLING, 2);
             put(Enchantment.DEPTH_STRIDER, 2);
           }
-        });
+        }));
       }
       case 11 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
             put(Enchantment.FEATHER_FALLING, 2);
             put(Enchantment.DEPTH_STRIDER, 2);
           }
-        });
+        }));
       }
       case 12 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
             put(Enchantment.FEATHER_FALLING, 2);
             put(Enchantment.DEPTH_STRIDER, 2);
           }
-        });
+        }));
       }
       case 13 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
             put(Enchantment.FEATHER_FALLING, 3);
             put(Enchantment.DEPTH_STRIDER, 2);
           }
-        });
+        }));
       }
       case 14 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.DIAMOND_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
             put(Enchantment.FEATHER_FALLING, 3);
             put(Enchantment.DEPTH_STRIDER, 3);
           }
-        });
+        }));
       }
       case 15 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
             put(Enchantment.FEATHER_FALLING, 3);
             put(Enchantment.DEPTH_STRIDER, 3);
           }
-        });
+        }));
       }
       case 16 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 3);
             put(Enchantment.DEPTH_STRIDER, 3);
           }
-        });
+        }));
       }
       case 17 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
           }
-        });
+        }));
       }
       case 18 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 1);
           }
-        });
+        }));
       }
       case 19 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 2);
           }
-        });
+        }));
       }
       case 20 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 21 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 22 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 1);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 23 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 2);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 24 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_CHESTPLATE, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 25 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>());
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>()));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 26 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 1);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 27 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 2);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 28 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 3);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
       case 29 -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
-
-
-
-
       default -> {
-        gear[0] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_HELMET, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.AQUA_AFFINITY, 1);
             put(Enchantment.RESPIRATION, 3);
           }
-        });
-        gear[1] = GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.ELYTRA, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[2] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_LEGGINGS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
           }
-        });
-        gear[3] = GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
+        }));
+        gear.add(GearUtil.createCustomGear(key, levelString, Material.NETHERITE_BOOTS, new HashMap<Enchantment, Integer>() {
           {
             put(Enchantment.PROTECTION, 4);
             put(Enchantment.FEATHER_FALLING, 4);
             put(Enchantment.DEPTH_STRIDER, 3);
             put(Enchantment.SOUL_SPEED, 3);
           }
-        });
+        }));
       }
     }
 

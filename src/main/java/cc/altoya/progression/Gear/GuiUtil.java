@@ -1,6 +1,5 @@
 package cc.altoya.progression.Gear;
 
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.bukkit.Bukkit;
@@ -29,7 +28,7 @@ public class GuiUtil {
       ArmourLevelUtil.getArmourViaLevel(11),
       ArmourLevelUtil.getArmourViaLevel(12),
       ArmourLevelUtil.getArmourViaLevel(13)
-      ).flatMap(Arrays::stream) 
+      ).flatMap(items -> Stream.of(items)) 
       .toArray(ItemStack[]::new);
       
     addItemsToGui(gui, guiItems);
@@ -56,7 +55,7 @@ public class GuiUtil {
       ArmourLevelUtil.getArmourViaLevel(27),
       ArmourLevelUtil.getArmourViaLevel(28),
       ArmourLevelUtil.getArmourViaLevel(29)
-      ).flatMap(Arrays::stream) 
+      ).flatMap(items -> Stream.of(items)) 
       .toArray(ItemStack[]::new);
       
     addItemsToGui(gui, guiItems);
@@ -70,7 +69,7 @@ public class GuiUtil {
       ArmourLevelUtil.getArmourViaLevel(27),
       ArmourLevelUtil.getArmourViaLevel(28),
       ArmourLevelUtil.getArmourViaLevel(29)
-      ).flatMap(Arrays::stream) 
+      ).flatMap(items -> Stream.of(items)) 
       .toArray(ItemStack[]::new);
       
     addItemsToGui(gui, guiItems);

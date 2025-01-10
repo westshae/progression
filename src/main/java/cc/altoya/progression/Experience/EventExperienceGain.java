@@ -1,5 +1,6 @@
 package cc.altoya.progression.Experience;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
 import org.bukkit.Material;
@@ -210,16 +211,16 @@ public class EventExperienceGain implements Listener {
       return;
 
     ItemStack[] currentArmour = event.getPlayer().getInventory().getArmorContents();
-    ItemStack[] newArmour = ArmourLevelUtil.getArmourViaUuid(event.getPlayer().getUniqueId());
+    ArrayList<ItemStack> newArmour = (ArrayList<ItemStack>) ArmourLevelUtil.getArmourViaUuid(event.getPlayer().getUniqueId());
 
     for (int i = 0; i < 4; i++) {
       event.getPlayer().getInventory().remove(currentArmour[i]);
     }
 
-    event.getPlayer().getInventory().setHelmet(newArmour[0]);
-    event.getPlayer().getInventory().setChestplate(newArmour[1]);
-    event.getPlayer().getInventory().setLeggings(newArmour[2]);
-    event.getPlayer().getInventory().setBoots(newArmour[3]);
+    event.getPlayer().getInventory().setHelmet(newArmour.get(0));
+    event.getPlayer().getInventory().setChestplate(newArmour.get(1));
+    event.getPlayer().getInventory().setLeggings(newArmour.get(2));
+    event.getPlayer().getInventory().setBoots(newArmour.get(3));
 
     ChatUtil.sendSuccessMessage(event.getPlayer(), "Your armour has leveled up!");
   }
