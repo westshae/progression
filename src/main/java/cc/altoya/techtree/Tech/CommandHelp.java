@@ -1,4 +1,4 @@
-package cc.altoya.techtree.Experience;
+package cc.altoya.techtree.Tech;
 
 import org.bukkit.entity.Player;
 
@@ -7,7 +7,7 @@ import cc.altoya.techtree.Util.GeneralUtil;
 
 public class CommandHelp {
     public static boolean handle(Player sender, String[] args) {
-        if (!GeneralUtil.handlePermissionsAndArguments(sender, "progression", args, 1)) {
+        if (!GeneralUtil.handlePermissionsAndArguments(sender, "techtree", args, 1)) {
             return true;
         }
 
@@ -16,6 +16,6 @@ public class CommandHelp {
     }
 
     private static void help(Player player) {
-        ChatUtil.sendCommandHelpMessage(player, "/experience", ExperienceUtil.getExperienceCommands());
+        ChatUtil.sendCommandHelpMessage(player, "/tech", TechUtil.getTechCommands());
     }
 }

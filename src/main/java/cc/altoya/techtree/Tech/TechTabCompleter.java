@@ -1,4 +1,4 @@
-package cc.altoya.techtree.Gear;
+package cc.altoya.techtree.Tech;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -8,14 +8,14 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GearTabCompleter implements TabCompleter {
+public class TechTabCompleter implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (!(sender instanceof Player)) {
             return null;
         }
 
-        List<String> commandsUnformatted = List.copyOf(GearUtil.getGearCommands().keySet());
+        List<String> commandsUnformatted = List.copyOf(TechUtil.getTechCommands().keySet());
 
         List<String[]> commands = new ArrayList<String[]>();
 

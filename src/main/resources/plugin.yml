@@ -5,11 +5,7 @@ api-version: 1.21.4
 description: TechTree plugin
 
 commands:
-  experience:
-    description: Experience system
-    usage: /experience {subcommand} {var}
-    tab-completer: cc.altoya.techtree.Experience.ExperienceTabCompleter
-  gear:
-    description: Gear system
-    usage: /gear {subcommand} {var}
-    tab-completer: cc.altoya.techtree.Experience.GearTabCompleter
+  tech:
+    description: TechTree system
+    usage: /tech {subcommand} {var}
+    tab-completer: cc.altoya.techtree.Tech.TechTabCompleter
